@@ -7,11 +7,10 @@ import { addInformation } from "../step1/step1Slice";
 
 export default function Step1() {
   const dispatch = useAppDispatch();
-  const [img, setImg] = useState();
   const handlePreviewAvatar = (e: any) => {
     const file = e.target.files[0];
     file.preview = URL.createObjectURL(file);
-    setImg(file.preview);
+    setImage(file.preview);
   };
   const valueInput = [
     {
@@ -120,7 +119,7 @@ export default function Step1() {
         <input
           placeholder="Short description..."
           className="w-2/3 input-form"
-          onChange={(e) => setAppName(e.target.value)}
+          onChange={(e) => setShortDesc(e.target.value)}
         />
       </div>
       <div className="flex flex-col">
@@ -128,6 +127,7 @@ export default function Step1() {
           Long description
         </label>
         <textarea
+          onChange={(e) => setLongDesc(e.target.value)}
           name="thanh"
           id="message"
           rows={6}
@@ -148,12 +148,16 @@ export default function Step1() {
             className="hidden"
             onChange={handlePreviewAvatar}
           />
-          <img src={img} className="w-full h-full" />
+          <img src={image} className="w-full h-full" />
         </label>
       </div>
       <div className="w-full flex flex-col my-4">
         <label className="text-left">Company name</label>
-        <input type="text" className="w-full input-form" />
+        <input
+          type="text"
+          className="w-full input-form"
+          onChange={(e) => setCompanyName(e.target.value)}
+        />
       </div>
       <div className="mb-9 my-4">
         {valueInput.map((item) => (
@@ -166,7 +170,11 @@ export default function Step1() {
         </label>
         <div className="w-full">
           <p className="text-base text-left">Name</p>
-          <input type="text" className="input-form w-full" />
+          <input
+            type="text"
+            className="input-form w-full"
+            onChange={(e) => setAppName(e.target.value)}
+          />
         </div>
         <div>
           <p className="text-base text-left">Email address</p>
