@@ -7,6 +7,7 @@ import { addInformation } from "../step1/step1Slice";
 
 export default function Step1() {
   const dispatch = useAppDispatch();
+  const [image, setImage] = useState();
   const handlePreviewAvatar = (e: any) => {
     const file = e.target.files[0];
     file.preview = URL.createObjectURL(file);
@@ -71,55 +72,13 @@ export default function Step1() {
       label: "Documentation URL",
     },
   ];
-  const addInformationClick = () => {
-    dispatch(
-      addInformation({
-        appName: appName,
-        shortDesc: shortDesc,
-        longDesc: longDesc,
-        image: image,
-        companyName: companyName,
-        category: category,
-        industry: industry,
-        market: market,
-        lineOfBusiness: lineOfBusiness,
-        developerName: developerName,
-        developerEmail: developerEmail,
-        privacyUrl: privacyUrl,
-        termsUrl: "",
-        supportUrl: supportUrl,
-        DocumentationUrl: DocumentationUrl,
-      })
-    );
-  };
-  const [appName, setAppName] = useState("");
-  const [shortDesc, setShortDesc] = useState("");
-  const [longDesc, setLongDesc] = useState("");
-  const [image, setImage] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [category, setCategory] = useState([]);
-  const [industry, setIndustry] = useState([]);
-  const [market, setMarket] = useState([]);
-  const [lineOfBusiness, setLineOfBusiness] = useState("");
-  const [developerName, setDeveloperName] = useState("");
-  const [developerEmail, setDeveloperEmail] = useState("");
-  const [privacyUrl, setPrivacyUrl] = useState("");
-  const [termsUrl, setTermsUrl] = useState("");
-  const [supportUrl, setSupportUrl] = useState("");
-  const [DocumentationUrl, setDocumentationUrl] = useState("");
-
   return (
     <form className="w-2/5 mt-[250px]">
       <div className="flex flex-row">
-        <input
-          placeholder="Name..."
-          className="w-1/3 input-form mr-5"
-          onChange={(e) => setAppName(e.target.value)}
-        />
+        <input placeholder="Name..." className="w-1/3 input-form mr-5" />
         <input
           placeholder="Short description..."
           className="w-2/3 input-form"
-          onChange={(e) => setShortDesc(e.target.value)}
         />
       </div>
       <div className="flex flex-col">
@@ -127,7 +86,6 @@ export default function Step1() {
           Long description
         </label>
         <textarea
-          onChange={(e) => setLongDesc(e.target.value)}
           name="thanh"
           id="message"
           rows={6}
@@ -153,11 +111,7 @@ export default function Step1() {
       </div>
       <div className="w-full flex flex-col my-4">
         <label className="text-left">Company name</label>
-        <input
-          type="text"
-          className="w-full input-form"
-          onChange={(e) => setCompanyName(e.target.value)}
-        />
+        <input type="text" className="w-full input-form" />
       </div>
       <div className="mb-9 my-4">
         {valueInput.map((item) => (
@@ -170,11 +124,7 @@ export default function Step1() {
         </label>
         <div className="w-full">
           <p className="text-base text-left">Name</p>
-          <input
-            type="text"
-            className="input-form w-full"
-            onChange={(e) => setAppName(e.target.value)}
-          />
+          <input type="text" className="input-form w-full" />
         </div>
         <div>
           <p className="text-base text-left">Email address</p>
@@ -188,10 +138,7 @@ export default function Step1() {
       </div>
       <div className="mt-12 text-right">
         <button className="text-green-600 font-medium px-4">Saved</button>
-        <button
-          className="border-white text-white bg-blue-500 px-4 rounded"
-          onClick={addInformationClick}
-        >
+        <button className="border-white text-white bg-blue-500 px-4 rounded">
           Continue
         </button>
       </div>
